@@ -13,6 +13,6 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <a href="view/login.jsp">hungdz</a>
+        <a href="view/login.jsp"></a>
     </body>
 </html>
