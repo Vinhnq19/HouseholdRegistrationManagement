@@ -4,10 +4,22 @@
  */
 package dao;
 
+import java.util.List;
+import model.Notification;
+
 /**
  *
  * @author Vinh
  */
-public class NotificationDAO {
+public class NotificationDAO extends GenericDAO<Notification>{
+
+    @Override
+    public List<Notification> findAll() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    @Override
+    public int insert(Notification t) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

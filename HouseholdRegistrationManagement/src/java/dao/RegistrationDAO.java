@@ -4,10 +4,23 @@
  */
 package dao;
 
+import java.util.List;
+import model.Registration;
+
 /**
  *
  * @author Vinh
  */
-public class RegistrationDAO {
+public class RegistrationDAO extends GenericDAO<Registration>{
+
+    @Override
+    public List<Registration> findAll() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public int insert(Registration t) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }
