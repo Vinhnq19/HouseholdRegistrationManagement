@@ -11,7 +11,11 @@ import java.sql.*;
  * @author Vinh
  */
 public class DBContext {
+    private static DBContext instance = new DBContext();
     protected Connection connection;
+    public static DBContext getInstance(){
+        return instance;
+    }
 
     /**
      * get an connection
@@ -22,7 +26,7 @@ public class DBContext {
     public Connection getConnection() {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String url = "jdbc:sqlserver://localhost:1433;databaseName=CRUD_WITH_DB";
+            String url = "jdbc:sqlserver://localhost:1433;databaseName=HouseholdRegistrationManagement";
             String user = "sa";
             String password = "123";
             connection = DriverManager.getConnection(url, user, password);

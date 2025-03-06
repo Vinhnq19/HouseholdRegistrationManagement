@@ -5467,6 +5467,9 @@ input[type=button].btn-block {
 }
 
 .navbar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
     position: relative;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -43063,6 +43066,9 @@ button.bg-dark:focus {
 
 .text-white {
     color: #fff !important;
+}
+.text-yellow {
+    color: #FFD700 !important;
 }
 
 .text-primary {
