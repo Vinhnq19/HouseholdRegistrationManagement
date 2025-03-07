@@ -11,7 +11,7 @@
         >
         <h2 class="fwSemiBold mb-4">Thành viên dự án</h2>
         <p>
-            Các thành viên nhóm 1 lớp SE1912
+            Các thành viên lớp SE1912
         </p>
     </header>
     <div class="row justify-content-center text-center">
@@ -46,7 +46,7 @@
                 >
                 <div class="imgHolder position-relative d-flex justify-content-center">
                     <img
-                        src="${pageContext.request.contextPath}/img/img20.jpg"
+                        src="${pageContext.request.contextPath}/img/HaiDang.jpg"
                         class="img-fluid d-block w-100 mx-auto"
                         alt="image description"
                         />

@@ -93,7 +93,7 @@
                                 data-toggle="dropdown"
                                 aria-haspopup="true"
                                 aria-expanded="false"
-                                >Account</a
+                                >Tài khoản</a
                             >
                             <div
                                 class="dropdown-menu hdMainDropdown desktopDropOnHover"
