@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Vinh/OneDrive/Desktop/SP25/git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/web/view/common/meetCouncilBlock.jsp</file>
             <file>file:/C:/Users/Vinh/OneDrive/Desktop/SP25/git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/web/view/common/header.jsp</file>
-            <file>file:/C:/Users/Vinh/OneDrive/Desktop/SP25/git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/web/view/home.jsp</file>
+            <file>file:/C:/Users/Vinh/OneDrive/Desktop/SP25/git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/Vinh/OneDrive/Desktop/SP25/git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/src/java/controller/RegistrationServlet.java</file>
+            <file>file:/C:/Users/Vinh/OneDrive/Desktop/SP25/git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/web/view/citizen/HouseholdRegistration.jsp</file>
         </group>
     </open-files>
 </project-private>

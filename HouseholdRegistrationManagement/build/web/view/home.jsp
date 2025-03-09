@@ -44,28 +44,28 @@
             <div class="phStickyWrap">
                 <!-- pageHeader -->
                 <header id="pageHeader" class="bg-white">
-                    <jsp:include page="common/header.jsp"></jsp:include>   
+                    <jsp:include page="../common/header.jsp"></jsp:include>   
                 </header>
                 
             </div>
             <main>
                 <!-- ibSlider -->
                 <div class="introBlock ibSlider">
-                    <jsp:include page="common/ibSlider.jsp"></jsp:include>
+                    <jsp:include page="../common/ibSlider.jsp"></jsp:include>
                 </div>
                 <aside id="featuresAsideBlock" class="featuresAsideBlock position-relative text-white">
-                    <jsp:include page="common/featuresAsideBlock.jsp"></jsp:include>
+                    <jsp:include page="../common/featuresAsideBlock.jsp"></jsp:include>
 
                 </aside>
                 <section
                     class="meetCouncilBlock position-relative pt-7 pt-md-9 pt-lg-14 pt-xl-20 pb-6"
                 >
-                    <jsp:include page="common/meetCouncilBlock.jsp"></jsp:include>
+                    <jsp:include page="../common/meetCouncilBlock.jsp"></jsp:include>
                     </section>
                     </main>
                     <!-- ftAreaWrap -->
                     <div class="ftAreaWrap position-relative bg-gDark fontAlter">
-                    <jsp:include page="common/ftAreaWrap.jsp"></jsp:include>
+                    <jsp:include page="../common/ftAreaWrap.jsp"></jsp:include>
                     </div>
         </div>
         <!-- include jQuery library -->
