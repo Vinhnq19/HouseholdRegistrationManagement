@@ -1,4 +1,6 @@
-
+USE [master]
+GO
+CREATE DATABASE [HouseholdRegistrationManagement]
 GO
 USE [HouseholdRegistrationManagement]
 GO
@@ -17,6 +19,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+/****** Object:  Table [dbo].[Households]    Script Date: 09/03/2025 5:30:28 CH ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -32,7 +35,6 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Logs]    Script Date: 03/03/2025 11:02:20 CH ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -48,7 +50,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Notifications]    Script Date: 03/03/2025 11:02:20 CH ******/
+/****** Object:  Table [dbo].[Notifications]    Script Date: 09/03/2025 5:30:28 CH ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -65,7 +67,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Registrations]    Script Date: 03/03/2025 11:02:20 CH ******/
+/****** Object:  Table [dbo].[Registrations]    Script Date: 09/03/2025 5:30:28 CH ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -79,13 +81,15 @@ CREATE TABLE [dbo].[Registrations](
 	[Status] [varchar](10) NULL,
 	[ApprovedBy] [int] NULL,
 	[Comments] [text] NULL,
+	[Address] [text] NOT NULL,
+	[DocumentPath] [text] NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[RegistrationID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Users]    Script Date: 03/03/2025 11:02:20 CH ******/
+/****** Object:  Table [dbo].[Users]    Script Date: 09/03/2025 5:30:28 CH ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -102,6 +106,16 @@ PRIMARY KEY CLUSTERED
 	[UserID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[Registrations] ON 
+GO
+INSERT [dbo].[Registrations] ([RegistrationID], [UserID], [RegistrationType], [StartDate], [EndDate], [Status], [ApprovedBy], [Comments], [Address], [DocumentPath]) VALUES (6, 3, N'Temporary', CAST(N'2025-03-10' AS Date), CAST(N'2025-03-20' AS Date), N'Pending', NULL, NULL, N'123 Ðu?ng ABC, Qu?n 1', N'uploads/IMG_7022.CR2')
+GO
+INSERT [dbo].[Registrations] ([RegistrationID], [UserID], [RegistrationType], [StartDate], [EndDate], [Status], [ApprovedBy], [Comments], [Address], [DocumentPath]) VALUES (17, 1, N'Temporary', CAST(N'2025-03-10' AS Date), CAST(N'2025-03-20' AS Date), N'Pending', NULL, NULL, N'123 Ðu?ng ABC, Qu?n 1', N'uploads/sample.pdf')
+GO
+INSERT [dbo].[Registrations] ([RegistrationID], [UserID], [RegistrationType], [StartDate], [EndDate], [Status], [ApprovedBy], [Comments], [Address], [DocumentPath]) VALUES (22, 1, N'Permanent', CAST(N'2024-12-12' AS Date), NULL, N'Pending', NULL, NULL, N'42 du?ng Nguy?n Thân M?n, phu?ng Nghi Th?y, Th? xã C?a Lò, Ngh? An', N'uploads/480944976_1171465421649378_5464771121267732387_n.jpg')
+GO
+SET IDENTITY_INSERT [dbo].[Registrations] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Users] ON 
 GO
@@ -129,7 +143,7 @@ SET IDENTITY_INSERT [dbo].[Users] OFF
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [UQ__Users__A9D10534E7A8FD85]    Script Date: 03/03/2025 11:02:20 CH ******/
+/****** Object:  Index [UQ__Users__A9D10534E7A8FD85]    Script Date: 09/03/2025 5:30:28 CH ******/
 ALTER TABLE [dbo].[Users] ADD UNIQUE NONCLUSTERED 
 (
 	[Email] ASC
