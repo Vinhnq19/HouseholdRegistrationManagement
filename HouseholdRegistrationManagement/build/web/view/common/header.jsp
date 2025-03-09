@@ -59,7 +59,7 @@
                                     <li>
                                         <a
                                             class="dropdown-item"
-                                            href="contact-1.html"
+                                            href="HouseholdRegistration.jsp"
                                             >Đăng ký hộ khẩu</a
                                         >
                                     </li>
@@ -118,8 +118,8 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="nav-item dropdown ddohOpener">
-                            <a class=" dropdown-toggle dropIcn" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Thông báo</a>
+                        <li class="nav-item">
+                            <a href="">Thông báo</a>
                         </li>
                     </ul>
                 </div>

@@ -17,7 +17,7 @@
                                         href="home.jsp"
                                         class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10"
                                     >
-                                        <img src="${pageContext.request.contextPath}/img/citizenLogo.png" alt="Congdan"/>
+                                        <img src="${pageContext.request.contextPath}/img/logoCitizen.png" alt="Congdan"/>
                                         <h2 class="mb-0">
                                             Trang chủ
                                         </h2>
@@ -28,7 +28,7 @@
                                         href=""
                                         class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10"
                                     >
-                                        <img src="${pageContext.request.contextPath}/img/citizenLogo.png" alt="Congdan"/>
+                                        <img src="${pageContext.request.contextPath}/img/logoCitizen.png" alt="Congdan"/>
                                         <h2 class="mb-0">
                                             Đăng ký <br />Hộ khẩu
                                         </h2>
@@ -39,7 +39,7 @@
                                         href="servicesSingle.html"
                                         class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10"
                                     >
-                                        <img src="${pageContext.request.contextPath}/img/citizenLogo.png" alt="Congdan"/>
+                                        <img src="${pageContext.request.contextPath}/img/logoCitizen.png" alt="Congdan"/>
                                         <h2 class="mb-0">
                                             Tách <br />Hộ khẩu
                                         </h2>
@@ -50,7 +50,7 @@
                                         href="servicesSingle.html"
                                         class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10"
                                     >
-                                        <img src="${pageContext.request.contextPath}/img/citizenLogo.png" alt="Congdan"/>
+                                        <img src="${pageContext.request.contextPath}/img/logoCitizen.png" alt="Congdan"/>
                                         <h2 class="mb-0">
                                             Chuyển <br />Hộ khẩu
                                         </h2>
@@ -61,7 +61,7 @@
                                         href="servicesSingle.html"
                                         class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10"
                                         >
-                                        <img src="${pageContext.request.contextPath}/img/citizenLogo.png" alt="Congdan"/>
+                                        <img src="${pageContext.request.contextPath}/img/logoCitizen.png" alt="Congdan"/>
                                         <h2 class="mb-0">
                                             Trạng thái <br />Hồ sơ
                                         </h2>
@@ -72,7 +72,7 @@
                                         href="servicesSingle.html"
                                         class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10"
                                         >
-                                        <img src="${pageContext.request.contextPath}/img/citizenLogo.png" alt="Congdan"/>
+                                        <img src="${pageContext.request.contextPath}/img/logoCitizen.png" alt="Congdan"/>
                                         <h2 class="mb-0">
                                             Thông báo
                                         </h2>

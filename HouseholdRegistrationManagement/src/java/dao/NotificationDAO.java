@@ -11,15 +11,6 @@ import model.Notification;
  *
  * @author Vinh
  */
-public class NotificationDAO extends GenericDAO<Notification>{
+public class NotificationDAO{
 
-    @Override
-    public List<Notification> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    @Override
-    public int insert(Notification t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
 }

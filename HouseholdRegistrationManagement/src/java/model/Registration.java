@@ -23,9 +23,11 @@ public class Registration {
     public int registrationId;
     public int userId;
     public String registrationType;
+    public String address;
     public String startDate;
     public String endDate;
     public String status;
     public int approvedBy;
     public String comments;
+    public String documentPath;
 }
