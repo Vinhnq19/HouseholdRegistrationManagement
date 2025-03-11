@@ -14,7 +14,7 @@
                             >
                                 <li>
                                     <a
-                                        href="${pageContext.request.contextPath}/view/home.jsp"
+                                        href="${pageContext.request.contextPath}/view/citizen/citizenHome.jsp"
                                         class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10"
                                     >
                                         <img src="${pageContext.request.contextPath}/img/logoCitizen.png" alt="Congdan"/>
