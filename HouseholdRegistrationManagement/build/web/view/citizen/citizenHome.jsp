@@ -54,7 +54,7 @@
                     <jsp:include page="../common/ibSlider.jsp"></jsp:include>
                 </div>
                 <aside id="featuresAsideBlock" class="featuresAsideBlock position-relative text-white">
-                    <jsp:include page="../common/featuresAsideBlock.jsp"></jsp:include>
+                    <jsp:include page="../citizen/featuresAsideBlock.jsp"></jsp:include>
 
                 </aside>
                 <section

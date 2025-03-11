@@ -14,7 +14,7 @@
                             >
                                 <li>
                                     <a
-                                        href="home.jsp"
+                                        href="${pageContext.request.contextPath}/view/home.jsp"
                                         class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10"
                                     >
                                         <img src="${pageContext.request.contextPath}/img/logoCitizen.png" alt="Congdan"/>
@@ -25,7 +25,7 @@
                                 </li>
                                 <li>
                                     <a
-                                        href=""
+                                        href="${pageContext.request.contextPath}/view/citizen/HouseholdRegistration.jsp"
                                         class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10"
                                     >
                                         <img src="${pageContext.request.contextPath}/img/logoCitizen.png" alt="Congdan"/>
@@ -36,7 +36,7 @@
                                 </li>
                                 <li>
                                     <a
-                                        href="servicesSingle.html"
+                                        href="${pageContext.request.contextPath}/view/citizen/separatingRegistration.jsp"
                                         class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10"
                                     >
                                         <img src="${pageContext.request.contextPath}/img/logoCitizen.png" alt="Congdan"/>
