@@ -14,7 +14,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- set the page title -->
-        <title>Vienamese Public Services</title>
+        <title>Vietnamese Public Services</title>
         <!-- inlcude google nunito sans font cdn link -->
         <link rel="preconnect" href="https://fonts.gstatic.com/" />
         <link
