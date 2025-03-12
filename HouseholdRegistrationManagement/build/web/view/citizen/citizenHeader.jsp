@@ -81,7 +81,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a href="javascript:void(0);">Trạng thái hồ sơ</a>
+                            <a href="${pageContext.request.contextPath}/profileStatus">Trạng thái hồ sơ</a>
                         </li>
                         <li
                             class="nav-item dropdown ddohOpener"

@@ -17,6 +17,7 @@ import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpSession;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.util.List;
 import model.Registration;
 
 /**
@@ -57,7 +58,6 @@ public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
     }
 
     /**

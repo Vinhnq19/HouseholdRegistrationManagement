@@ -20,7 +20,7 @@ import model.Registration;
  *
  * @author Vinh
  */
-public class CitizenServlet extends HttpServlet {
+public class ProfileStatusServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -37,19 +37,30 @@ public class CitizenServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CitizenServlet</title>");  
+            out.println("<title>Servlet ProfileStatusServlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CitizenServlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet ProfileStatusServlet at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
     } 
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-    }
+        HttpSession session = request.getSession();
+        Integer userId = (Integer) session.getAttribute("userId");
+
+        if (userId == null) {
+            userId = 1;
+            session.setAttribute("userId", userId);
+        }
+        RegistrationDAO dao = new RegistrationDAO();
+        List<Registration> registrations = dao.getStatus(userId);
+        request.setAttribute("registrations", registrations);
+        request.getRequestDispatcher("/view/citizen/profileStatus.jsp").forward(request, response);
+    } 
 
     /** 
      * Handles the HTTP <code>POST</code> method.
