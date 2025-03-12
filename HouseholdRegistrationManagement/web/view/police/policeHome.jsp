@@ -28,59 +28,7 @@
         <!-- include the rtl version stylesheet -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/rtl.css" />
         <style>
-            body {
-                font-family: "Times New Roman", Times, serif;
-                background-color: #f8f9fa;
-                text-align: center;
-            }
-            .container {
-                width: 80%;
-                margin: auto;
-                padding-top: 20px;
-            }
-            h1 {
-                color: white; /* Đổi màu chữ thành trắng */
-                font-size: 50px; /* Làm chữ to hơn */
-                font-weight: bold; /* Làm chữ đậm */
-                text-align: center; /* Căn giữa */
-                text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Tạo hiệu ứng bóng để nổi bật hơn */
-                margin-top: 20px; /* Tạo khoảng cách giữa tiêu đề và thanh điều hướng */
-            }
-            .button-container {
-                display: flex;
-                justify-content: center;
-                gap: 20px;
-            }
-            .card {
-                background: white;
-                padding: 20px;
-                border-radius: 10px;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                width: 250px;
-                text-align: center;
-            }
-            .card h2 {
-                font-size: 18px;
-                margin-bottom: 10px;
-            }
-            .btn {
-                display: block;
-                padding: 10px;
-                border-radius: 5px;
-                text-decoration: none;
-                font-size: 16px;
-                font-weight: bold;
-                color: white;
-            }
-            .btn-approve {
-                background-color: red;
-            }
-            .btn-manage {
-                background-color: green;
-            }
-            .btn-report {
-                background-color: orange;
-            }
+            
             .bg-container {
                 background-image: url('https://gitiho.com/caches/p_medium_large//uploads/338054/images/image_5-hinh-nen-powerpoint-trong-dong.jpg');
                 background-size: cover;

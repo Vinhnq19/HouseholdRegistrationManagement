@@ -19,7 +19,7 @@
             <div
                 class="logo flex-shrink-0 mr-3 mr-xl-8 mr-xlwd-16"
                 >
-                <a href="${pageContext.request.contextPath}/view/citizen/citizenHome.jsp">
+                <a href="${pageContext.request.contextPath}/view/police/policeHome.jsp">
                     <img
                         src="${pageContext.request.contextPath}/img/VNPS.png"
                         class="img-fluid"
@@ -34,39 +34,18 @@
                     class="collapse navbar-collapse pageMainNavCollapse mt-2 mt-md-0"
                     id="pageMainNavCollapse"
                     >
-                    <ul class="navbar-nav mainNavigation">
+                    <ul class="navbar-nav mainNavigation" >
                         <li class="nav-item">
-                            <a href="${pageContext.request.contextPath}/view/citizen/citizenHome.jsp">Trang chủ</a>
+                            <a href="${pageContext.request.contextPath}/view/police/policeHome.jsp">Trang chủ</a>
                         </li>
-                        <li
-                            class="nav-item dropdown ddohOpener"
-                            >
-                            <a
-                                href="${pageContext.request.contextPath}/view/police/verifyCitizen.jsp"
-                                role="button"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                                >Phê duyệt hồ sơ</a
-                            >
-
+                        <li class="nav-item">
+                            <a href="${pageContext.request.contextPath}/view/police/verifyCitizen.jsp">Phê duyệt hồ sơ</a>
                         </li>
                         <li class="nav-item">
                             <a href="javascript:void(0);">Quản lý hộ khẩu</a>
                         </li>
-                        <li
-                            class="nav-item dropdown ddohOpener"
-                            >
-                            <a
-
-                                href="javascript:void(0);"
-                                role="button"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                                >Báo cáo và kiểm tra</a
-                            >
-
+                        <li class="nav-item">
+                            <a href="javascript:void(0);">Báo cáo và kiểm tra</a>
                         </li>
                         <li class="nav-item">
                             <a href="">Thông báo</a>

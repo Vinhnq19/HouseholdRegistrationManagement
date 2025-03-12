@@ -1,20 +1,13 @@
-<%-- 
-    Document   : home
-    Created on : 2 thg 3, 2025, 15:19:18
-    Author     : Vinh
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    
-<!-- Mirrored from htmlbeans.com/html/egovt/home.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 02 Mar 2025 07:35:43 GMT -->
-<head>
+    <head>
         <!-- set the encoding of your site -->
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- set the page title -->
-        <title>Vietnamese Public Services</title>
+        <title>Vietnamese Public Services - Công dân</title>
         <!-- inlcude google nunito sans font cdn link -->
         <link rel="preconnect" href="https://fonts.gstatic.com/" />
         <link
