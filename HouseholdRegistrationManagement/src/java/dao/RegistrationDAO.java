@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import model.Registration;
@@ -68,16 +69,41 @@ public class RegistrationDAO{
         }
         return null; // Trả về null nếu không có dữ liệu
     }
+    
+    public List<Registration> getStatus(int userId) {
+        List<Registration> list = new ArrayList<>();
+        DBContext db = DBContext.getInstance();
+        String sql = """
+                     SELECT RegistrationID, RegistrationType, Address, StartDate, EndDate, Status
+                     FROM Registrations
+                     WHERE UserID = ? 
+                     ORDER BY StartDate DESC;""";
+        try{
+            PreparedStatement statement = db.getConnection().prepareStatement(sql);
+            statement.setInt(1, userId);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Registration r = new Registration();
+                r.setRegistrationId(rs.getInt("RegistrationID"));
+                r.setRegistrationType(rs.getString("RegistrationType"));
+                r.setAddress(rs.getString("Address"));
+                r.setStartDate(rs.getString("StartDate"));
+                r.setEndDate(rs.getString("EndDate"));
+                r.setStatus(rs.getString("Status"));
+                list.add(r);
+            }
+            
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 
     public static void main(String[] args) {
         RegistrationDAO dao = new RegistrationDAO();
         int userIdTest = 1; // Test với user ID giả lập
-        String address = dao.getCurrentAddress(userIdTest);
-
-        if (address != null) {
-            System.out.println("Địa chỉ hiện tại của User " + userIdTest + " là: " + address);
-        } else {
-            System.out.println("Không tìm thấy địa chỉ nào cho User " + userIdTest);
-        }
+        List<Registration> list = new ArrayList<>();
+        list = dao.getStatus(userIdTest);
+        System.out.println(list);
     }
 }
