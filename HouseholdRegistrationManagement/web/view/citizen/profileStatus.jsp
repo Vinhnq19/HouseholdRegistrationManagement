@@ -88,7 +88,7 @@
 
             </main>
             <div class="ftAreaWrap position-relative bg-gDark fontAlter">
-                <jsp:include page="../common/ftAreaWrap.jsp"></jsp:include>
+                <jsp:include page="../citizen/ftAreaWrap.jsp"></jsp:include>
                 </div>
             </div>
 
