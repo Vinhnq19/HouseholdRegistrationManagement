@@ -58,7 +58,7 @@
                                 </li>
                                 <li>
                                     <a
-                                        href="servicesSingle.html"
+                                        href="${pageContext.request.contextPath}/profileStatus"
                                         class="fflColumn d-block w-100 text-center px-2 pt-4 pb-10"
                                         >
                                         <img src="${pageContext.request.contextPath}/img/logoCitizen.png" alt="Congdan"/>
