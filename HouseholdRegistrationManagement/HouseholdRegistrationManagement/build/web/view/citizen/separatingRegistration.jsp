@@ -1,5 +1,4 @@
 
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -11,17 +10,23 @@
         <title>Tách hộ khẩu - Vietnamese Public Services</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" />
+        <style>
+            .section {
+                margin-bottom: 20px;
+                padding: 15px;
+            }
+        </style>
     </head>
 
     <body>
         <div id="pageWrapper">
-            <div class="phStickyWrap">
+            <div class="phStickyWrap section">
                 <header id="pageHeader" class="bg-white">
                     <jsp:include page="../citizen/citizenHeader.jsp"></jsp:include>
                 </header>
             </div>
             <main>
-                <div class="container">
+                <div class="container section">
                     <h2 class="text-center mt-4">Đăng ký tách hộ khẩu</h2>
 
                     <!-- Hiển thị thông báo từ Servlet -->
@@ -32,7 +37,7 @@
                     </c:if>
 
                     <c:if test="${requestScope.requestSaved}">
-                        <div class="card p-3 mt-3">
+                        <div class="card p-3 mt-3 section">
                             <h4>Thông tin tách hộ khẩu</h4>
                             <p><strong>Chủ hộ:</strong> ${sessionScope.userName}</p>
                             <p><strong>Địa chỉ hiện tại:</strong> ${sessionScope.currentAddress}</p>
@@ -48,7 +53,7 @@
                     </c:if>
 
                     <!-- Form đăng ký tách hộ khẩu -->
-                    <form action="${pageContext.request.contextPath}/registration" method="post" enctype="multipart/form-data">
+                    <form action="${pageContext.request.contextPath}/registration" method="post" enctype="multipart/form-data" class="section">
                         <input type="hidden" name="action" value="separatingRegistration">
 
                         <!-- Hiển thị địa chỉ hiện tại của hộ khẩu -->
@@ -74,7 +79,7 @@
                 </div>
             </main>
 
-            <div class="ftAreaWrap position-relative bg-gDark fontAlter">
+            <div class="ftAreaWrap position-relative bg-gDark fontAlter section">
                 <jsp:include page="../common/ftAreaWrap.jsp"></jsp:include>
             </div>
         </div>
