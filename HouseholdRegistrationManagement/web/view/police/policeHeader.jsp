@@ -36,13 +36,13 @@
                     >
                     <ul class="navbar-nav mainNavigation">
                         <li class="nav-item">
-                            <a href="${pageContext.request.contextPath}/view/police/policeHome.jsp">Trang chủ</a>
+                            <a href="${pageContext.request.contextPath}../view/police/policeHome.jsp">Trang chủ</a>
                         </li>
                         <li
                             class="nav-item dropdown ddohOpener"
                             >
                             <a
-                                href="${pageContext.request.contextPath}/view/police/verifyCitizen.jsp"
+                                href="${pageContext.request.contextPath}../view/police/verifyCitizen.jsp"
                                 role="button"
                                 data-toggle="dropdown"
                                 aria-haspopup="true"
@@ -52,14 +52,14 @@
 
                         </li>
                         <li class="nav-item">
-                            <a href="${pageContext.request.contextPath}/view/police/policeHouseholdManage.jsp">Quản lý hộ khẩu</a>
+                            <a href="${pageContext.request.contextPath}../view/police/policeHouseholdManage.jsp">Quản lý hộ khẩu</a>
                         </li>
                         <li
                             class="nav-item dropdown ddohOpener"
                             >
                             <a
 
-                                href="${pageContext.request.contextPath}/view/police/policeReportAndTest.jsp"
+                                href="${pageContext.request.contextPath}../view/police/policeReportAndTest.jsp"
                                 role="button"
                                 data-toggle="dropdown"
                                 aria-haspopup="true"
