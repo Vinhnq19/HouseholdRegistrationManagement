@@ -111,7 +111,7 @@
                                     <li>
                                         <a
                                             class="dropdown-item"
-                                            href="contact-2.html"
+                                            href="${pageContext.request.contextPath}/logout"
                                             >Đăng xuất</a
                                         >
                                     </li>

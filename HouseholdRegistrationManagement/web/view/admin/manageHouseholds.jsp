@@ -1,6 +1,6 @@
 <%-- 
-    Document   : login
-    Created on : 13 thg 2, 2025, 20:15:27
+    Document   : manageHouseholds
+    Created on : 17 thg 3, 2025, 14:18:05
     Author     : Vinh
 --%>
 
@@ -12,5 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <h1>Hello World!</h1>
     </body>
 </html>
