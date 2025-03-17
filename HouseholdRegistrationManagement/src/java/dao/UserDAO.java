@@ -2,8 +2,11 @@ package dao;
 
 import model.User;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDAO {
+
     private static final DBContext db = DBContext.getInstance();
 
     // Kiểm tra thông tin đăng nhập
@@ -30,8 +33,10 @@ public class UserDAO {
 
     // Đăng ký tài khoản mới
     public boolean register(User user) {
-        if (checkEmailExists(user.getEmail())) return false;
-        
+        if (checkEmailExists(user.getEmail())) {
+            return false;
+        }
+
         String sql = "INSERT INTO Users (FullName, Email, Password, Role, Address) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = db.getConnection().prepareStatement(sql)) {
             stmt.setString(1, user.getFullName());
@@ -92,4 +97,145 @@ public class UserDAO {
         }
         return false;
     }
+
+    //show tất cả người dùng    
+    public List<User> getAllUsers() {
+        List<User> users = new ArrayList<>();
+        try (Connection conn = db.getConnection()) {
+            String sql = "SELECT * FROM Users";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                users.add(new User(
+                        rs.getInt("UserID"),
+                        rs.getString("FullName"),
+                        rs.getString("Email"),
+                        rs.getString("Password"),
+                        rs.getString("Role"),
+                        rs.getString("Address")
+                ));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+
+    // Lấy thông tin user theo ID
+    public User getUserById(int userId) {
+        User user = null;
+        try (Connection conn = db.getConnection()) {
+            String sql = "SELECT * FROM Users WHERE UserID = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                user = new User(
+                        rs.getInt("UserID"),
+                        rs.getString("FullName"),
+                        rs.getString("Email"),
+                        rs.getString("Role"),
+                        rs.getString("Address")
+                );
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    // Cập nhật thông tin user
+    public boolean updateUser(int userId, String fullName, String email, String role, String address) {
+        try (Connection conn = db.getConnection()) {
+            String sql = "UPDATE Users SET FullName = ?, Email = ?, Role = ?, Address = ? WHERE UserID = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, fullName);
+            stmt.setString(2, email);
+            stmt.setString(3, role);
+            stmt.setString(4, address);
+            stmt.setInt(5, userId);
+
+            return stmt.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    // Xóa user
+    public boolean deleteUser(int userId) {
+        try (Connection conn = db.getConnection()) {
+            String sql = "DELETE FROM Users WHERE UserID = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, userId);
+
+            return stmt.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    //tìm theo tên
+    public List<User> searchUsersByName(String name) {
+        List<User> users = new ArrayList<>();
+        try (Connection conn = db.getConnection()) {
+            String sql = "SELECT * FROM Users WHERE FullName LIKE ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, "%" + name + "%"); // Tìm kiếm gần đúng
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                users.add(new User(
+                        rs.getInt("UserID"),
+                        rs.getString("FullName"),
+                        rs.getString("Email"),
+                        rs.getString("Role"),
+                        rs.getString("Address")
+                ));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+
+    public List<User> searchUsersByNameAndRole(String name, String role) {
+        List<User> users = new ArrayList<>();
+        try (Connection conn = db.getConnection()) {
+            String sql = "SELECT * FROM users WHERE 1=1";
+
+            if (!name.isEmpty()) {
+                sql += " AND fullName LIKE ?";
+            }
+            if (!role.isEmpty()) {
+                sql += " AND role = ?";
+            }
+
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            int paramIndex = 1;
+
+            if (!name.isEmpty()) {
+                stmt.setString(paramIndex++, "%" + name + "%");
+            }
+            if (!role.isEmpty()) {
+                stmt.setString(paramIndex++, role);
+            }
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                users.add(new User(
+                        rs.getInt("userId"),
+                        rs.getString("fullName"),
+                        rs.getString("email"),
+                        rs.getString("role"),
+                        rs.getString("address")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+
 }
