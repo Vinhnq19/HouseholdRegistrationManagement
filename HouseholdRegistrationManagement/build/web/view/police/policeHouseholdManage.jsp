@@ -16,7 +16,8 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- set the page title -->
-        <title>Đăng ký hộ khẩu - Vietnamese Public Services</title>
+        <title>Quản trị viên</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
         <!-- inlcude google nunito sans font cdn link -->
         <link rel="preconnect" href="https://fonts.gstatic.com/" />
         <link
@@ -40,14 +41,14 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/rtl.css" />
         <style>
             #pageWrapper {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
 
-main {
-    flex-grow: 1;
-}
+            main {
+                flex-grow: 1;
+            }
 
         </style>
     </head>
@@ -61,6 +62,7 @@ main {
                     <jsp:include page="../police/policeHeader.jsp"></jsp:include>   
                     </header>
                 </div>
+
                 <main>
                     <div class="container mt-4">
                         <h2 class="text-center mb-4">Quản lý thông tin cư dân</h2>
@@ -120,14 +122,15 @@ main {
                         <a href="addResident.jsp" class="btn btn-success">Thêm cư dân mới</a>
                     </div>  
                 </main>
-            <!-- Footer -->
+
+                <!-- Footer -->
                 <footer
                     id="pageFooter"
                     class="text-center bg-danger pt-6 pb-3 pt-md-8 pb-md-5"
-                >
+                    >
                     <div class="container">
                         <p>
-                            <jsp:include page="../citizen/ftAreaWrap.jsp"></jsp:include>
+                        <jsp:include page="../citizen/ftAreaWrap.jsp"></jsp:include>
                         </p>
                     </div>
                 </footer>
