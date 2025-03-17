@@ -19,7 +19,7 @@
             <div
                 class="logo flex-shrink-0 mr-3 mr-xl-8 mr-xlwd-16"
                 >
-                <a href="${pageContext.request.contextPath}/view/citizen/citizenHome.jsp">
+                <a href="${pageContext.request.contextPath}/view/admin/adminHome.jsp">
                     <img
                         src="${pageContext.request.contextPath}/img/VNPS.png"
                         class="img-fluid"
@@ -36,52 +36,16 @@
                     >
                     <ul class="navbar-nav mainNavigation">
                         <li class="nav-item">
-                            <a href="${pageContext.request.contextPath}/view/citizen/citizenHome.jsp">Trang chủ</a>
-                        </li>
-                        <li
-                            class="nav-item dropdown ddohOpener"
-                            >
-                            <a
-                                class=" dropdown-toggle dropIcn"
-                                href="javascript:void(0);"
-                                role="button"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                                >Đăng ký</a
-                            >
-                            <div
-                                class="dropdown-menu hdMainDropdown desktopDropOnHover"
-                                >
-                                <ul
-                                    class="list-unstyled mb-0 hdDropdownList"
-                                    >
-                                    <li>
-                                        <a
-                                            class="dropdown-item"
-                                            href="${pageContext.request.contextPath}/view/citizen/HouseholdRegistration.jsp"
-                                            >Đăng ký hộ khẩu</a
-                                        >
-                                    </li>
-                                    <li>
-                                        <a
-                                            class="dropdown-item"
-                                            href="${pageContext.request.contextPath}/view/citizen/separatingRegistration.jsp"
-                                            >Tách hộ khẩu</a
-                                        >
-                                    </li>
-                                    <li>
-                                        <a
-                                            class="dropdown-item"
-                                            href="contact-2.html"
-                                            >Chuyển hộ khẩu</a
-                                        >
-                                    </li>
-                                </ul>
-                            </div>
+                            <a href="${pageContext.request.contextPath}/view/admin/adminHome.jsp">Trang chủ</a>
                         </li>
                         <li class="nav-item">
-                            <a href="${pageContext.request.contextPath}/profileStatus">Trạng thái hồ sơ</a>
+                            <a href="${pageContext.request.contextPath}/view/admin/manageUsers.jsp">Người dùng</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="${pageContext.request.contextPath}/view/admin/manageHouseholds.jsp">Hộ khẩu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="${pageContext.request.contextPath}/view/admin/manageRegistrations.jsp">Đăng ký</a>
                         </li>
                         <li
                             class="nav-item dropdown ddohOpener"
@@ -105,6 +69,13 @@
                                         <a
                                             class="dropdown-item"
                                             href="contact-2.html"
+                                            >Cấu hình hệ thống</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            class="dropdown-item"
+                                            href="contact-2.html"
                                             >Thông tin cá nhân</a
                                         >
                                     </li>
@@ -119,7 +90,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a href="">Thông báo</a>
+                            <a href="${pageContext.request.contextPath}/view/admin/manageNotifications.jsp">Thông báo</a>
                         </li>
                     </ul>
                 </div>

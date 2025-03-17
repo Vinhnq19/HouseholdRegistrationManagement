@@ -1,8 +1,3 @@
-<%-- 
-    Document   : register
-    Created on : 13 thg 2, 2025, 20:15:39
-    Author     : Vinh
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

@@ -46,7 +46,7 @@ ALTER TABLE [dbo].[Registrations] ADD CONSTRAINT CK_Status CHECK ([Status] IN ('
 ALTER TABLE [dbo].[Users] ADD CONSTRAINT UQ_Email UNIQUE ([Email]);
 
 -- Thêm lại CHECK CONSTRAINT trên Role
-ALTER TABLE [dbo].[Users] ADD CONSTRAINT CK_UserRole CHECK ([Role] IN ('Police', 'AreaLeader', 'Citizen'));
+ALTER TABLE [dbo].[Users] ADD CONSTRAINT CK_UserRole CHECK ([Role] IN ('Police', 'AreaLeader', 'Citizen', 'Admin'));
 
 --Thêm HouseholdSeparation vào loại đăng ký
 ALTER TABLE [dbo].[Registrations]  
@@ -55,3 +55,10 @@ DROP CONSTRAINT CK_RegistrationType;
 ALTER TABLE [dbo].[Registrations]  
 ADD CONSTRAINT CK_RegistrationType  
 CHECK (RegistrationType IN ('Permanent', 'Temporary', 'TemporaryStay', 'HouseholdSeparation'));
+
+ALTER TABLE Users
+ADD CONSTRAINT CHK_Role CHECK (Role IN ('Citizen', 'AreaLeader', 'Police', 'Admin'));
+--Thêm một tài khoản admin
+ALTER TABLE [dbo].[Users] DROP CONSTRAINT CK_UserRole;
+ALTER TABLE [dbo].[Users] ADD CONSTRAINT CK_UserRole CHECK ([Role] IN ('Police', 'AreaLeader', 'Citizen', 'Admin'));
+INSERT INTO Users (FullName, Email, Password, Role, Address) VALUES ('Nguyễn Quang Vinh', 'vinhnqhe194181@gmail.com', '123', 'Admin', 'Cửa Lò, Nghệ An');

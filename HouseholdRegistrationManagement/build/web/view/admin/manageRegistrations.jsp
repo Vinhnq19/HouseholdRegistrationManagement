@@ -1,6 +1,6 @@
 <%-- 
-    Document   : users
-    Created on : 13 thg 2, 2025, 20:19:26
+    Document   : manageRegistrations
+    Created on : 17 thg 3, 2025, 14:18:16
     Author     : Vinh
 --%>
 
