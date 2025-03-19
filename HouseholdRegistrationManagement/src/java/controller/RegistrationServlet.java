@@ -103,30 +103,34 @@ public class RegistrationServlet extends HttpServlet {
         // Kiểm tra userId
         Integer userId = (Integer) session.getAttribute("userId");
         if (userId == null) {
-            userId = 1; // Gán userId giả lập nếu chưa đăng nhập
-            session.setAttribute("userId", userId);
-            session.setAttribute("userName", "User Test");
-            //            response.sendRedirect("login.jsp");
-//            return;
+            response.sendRedirect(request.getContextPath() + "/view/auth/login.jsp");
+            return;
         }
 
         // Lấy dữ liệu từ form
         String registrationType = request.getParameter("registrationType");
         String address = request.getParameter("address");
         String startDate = request.getParameter("startDate");
-        String endDate = request.getParameter("endDate").isEmpty() ? null : request.getParameter("endDate");
+        String endDate = request.getParameter("endDate");
 
         // Xử lý file upload
         Part filePart = request.getPart("document");
         String filename = (filePart != null && filePart.getSubmittedFileName() != null)
-                ? filePart.getSubmittedFileName() : "";
+                ? Paths.get(filePart.getSubmittedFileName()).getFileName().toString() // Lấy tên file gốc
+                : "";
 
         String documentPath = null;
         if (!filename.isEmpty()) {
-            String uploadPath = getServletContext().getRealPath("/uploads");
+            String uploadDir = "uploads"; // Thư mục lưu trữ trong ứng dụng web
+            String uploadPath = getServletContext().getRealPath("/") + uploadDir;
             Files.createDirectories(Paths.get(uploadPath)); // Tạo thư mục nếu chưa có
-            filePart.write(uploadPath + File.separator + filename);
-            documentPath = "uploads/" + filename; // Chỉ lưu đường dẫn tương đối vào DB
+
+            // Lưu file vào thư mục uploads
+            File file = new File(uploadPath, filename);
+            filePart.write(file.getAbsolutePath());
+
+            // Lưu đường dẫn tương đối vào DB để dễ truy xuất từ web
+            documentPath = uploadDir + "/" + filename;
         }
 
         // Tạo đối tượng Registration
@@ -158,11 +162,9 @@ public class RegistrationServlet extends HttpServlet {
             throws IOException, ServletException, SQLException {
         Integer userId = (Integer) session.getAttribute("userId");
         if (userId == null) {
-            userId = 1; // Gán userId giả lập
-            session.setAttribute("userId", userId);
-            session.setAttribute("userName", "User Test");
+            response.sendRedirect(request.getContextPath() + "/view/auth/login.jsp");
+            return;
         }
-
         RegistrationDAO dao = new RegistrationDAO();
 
         // Lấy địa chỉ hộ khẩu hiện tại
@@ -184,13 +186,21 @@ public class RegistrationServlet extends HttpServlet {
         // Xử lý file upload
         Part filePart = request.getPart("document");
         String filename = (filePart != null && filePart.getSubmittedFileName() != null)
-                ? filePart.getSubmittedFileName() : "";
+                ? Paths.get(filePart.getSubmittedFileName()).getFileName().toString() // Lấy tên file gốc
+                : "";
+
         String documentPath = null;
         if (!filename.isEmpty()) {
-            String uploadPath = getServletContext().getRealPath("/uploads");
+            String uploadDir = "uploads"; // Thư mục lưu trữ trong ứng dụng web
+            String uploadPath = getServletContext().getRealPath("/") + uploadDir;
             Files.createDirectories(Paths.get(uploadPath)); // Tạo thư mục nếu chưa có
-            filePart.write(uploadPath + File.separator + filename);
-            documentPath = "uploads/" + filename; // Chỉ lưu đường dẫn tương đối vào DB
+
+            // Lưu file vào thư mục uploads
+            File file = new File(uploadPath, filename);
+            filePart.write(file.getAbsolutePath());
+
+            // Lưu đường dẫn tương đối vào DB để dễ truy xuất từ web
+            documentPath = uploadDir + "/" + filename;
         }
 
         // Tạo đối tượng Registration mới

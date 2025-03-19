@@ -1,10 +1,4 @@
 <%-- 
-    Document   : headerSlider
-    Created on : Mar 12, 2025, 6:07:28 PM
-    Author     : athuu
---%>
-
-<%-- 
     Document   : ibSlider
     Created on : 5 thg 3, 2025, 17:33:07
     Author     : Vinh
@@ -29,8 +23,21 @@
                                                 <h1
                                                     class="text-white mb-4 h1Large"
                                                     >
-                                                    Dịch vụ công Quốc Gia
-                                                </h1>   
+                                                    Chào mừng các đồng chí đến với dịch vụ công Quốc Gia
+                                                </h1>
+                                                <p>
+                                                    Nơi cung cấp các dịch vụ đăng ký hồ sơ trực tuyến
+                                                </p>
+                                                <a
+                                                    href="#featuresAsideBlock"
+                                                    class="btn btnTheme font-weight-bold btnMinSm text-capitalize position-relative border-0 p-0 mt-6"
+                                                    data-hover="Tìm hiểu thêm"
+                                                    >
+                                                    <span
+                                                        class="d-block btnText"
+                                                        >Tìm hiểu thêm</span
+                                                    >
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -42,4 +49,3 @@
                                 ></span>
                         </article>
                     </div>
-

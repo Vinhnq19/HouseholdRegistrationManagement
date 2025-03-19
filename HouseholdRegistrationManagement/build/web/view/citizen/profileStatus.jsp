@@ -50,7 +50,7 @@ main {
                                 <thead class="table-light">
                                     <tr>
                                         <th>Mã</th>
-                                        <th>Loại</th>
+                                        <th>Người đăng ký</th>
                                         <th>Địa chỉ</th>
                                         <th>Trạng thái</th>
                                     </tr>
