@@ -43,6 +43,10 @@
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>controller.LogoutServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ApprovalServlet</servlet-name>
+        <servlet-class>controller.ApprovalServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AuthServlet</servlet-name>
         <url-pattern>/auth</url-pattern>
@@ -87,4 +91,12 @@
         <extension>woff</extension>
         <mime-type>application/font-woff</mime-type>
     </mime-mapping>
+    <servlet-mapping>
+        <servlet-name>ApprovalServlet</servlet-name>
+        <url-pattern>/approve</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>30</session-timeout>
+        <!-- Thời gian timeout tính bằng phút -->
+    </session-config>
 </web-app>

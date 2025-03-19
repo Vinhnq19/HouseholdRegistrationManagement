@@ -20,16 +20,17 @@ public class RegistrationDAO{
 
     public static boolean insertRegistration(Registration registration) {
         DBContext db = DBContext.getInstance();
-        String sql = "INSERT INTO Registrations (UserID, RegistrationType, Address, StartDate, Status, Comments, DocumentPath) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Registrations (UserID, RegistrationType, Address, StartDate, EndDate, Status, Comments, DocumentPath) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement statement = db.getConnection().prepareStatement(sql)) {
             statement.setInt(1, registration.getUserId());
             statement.setString(2, registration.getRegistrationType());
             statement.setString(3, registration.getAddress());
             statement.setString(4, registration.getStartDate());
-            statement.setString(5, registration.getStatus());
-            statement.setString(6, registration.getComments());
-            statement.setString(7, registration.getDocumentPath());
+            statement.setString(5, registration.getEndDate());
+            statement.setString(6, registration.getStatus());
+            statement.setString(7, registration.getComments());
+            statement.setString(8, registration.getDocumentPath());
 
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -75,7 +76,7 @@ public class RegistrationDAO{
         List<Registration> list = new ArrayList<>();
         DBContext db = DBContext.getInstance();
         String sql = """
-                     SELECT RegistrationID, RegistrationType, Address, StartDate, EndDate, Status
+                     SELECT RegistrationID, RegistrationType, Address, StartDate, EndDate, Status, DocumentPath
                      FROM Registrations
                      WHERE UserID = ? 
                      AND RegistrationType IN ('Permanent', 'Temporary', 'TemporaryStay')
@@ -92,6 +93,7 @@ public class RegistrationDAO{
                 r.setStartDate(rs.getString("StartDate"));
                 r.setEndDate(rs.getString("EndDate"));
                 r.setStatus(rs.getString("Status"));
+                r.setDocumentPath(rs.getString("DocumentPath"));
                 list.add(r);
             }
             
@@ -104,7 +106,7 @@ public class RegistrationDAO{
         List<Registration> list = new ArrayList<>();
         DBContext db = DBContext.getInstance();
         String sql = """
-                 SELECT RegistrationID, Address, Comments, Status
+                 SELECT RegistrationID, Address, Comments, Status, DocumentPath
                  FROM Registrations
                  WHERE UserID = ? AND RegistrationType = 'HouseholdSeparation'
                  ORDER BY StartDate DESC;
@@ -119,6 +121,7 @@ public class RegistrationDAO{
                 r.setAddress(rs.getString("Address")); // Địa chỉ mới
                 r.setComments(rs.getString("Comments")); // Địa chỉ cũ
                 r.setStatus(rs.getString("Status"));
+                r.setDocumentPath(rs.getString("DocumentPath"));
                 list.add(r);
             }
         } catch (SQLException e) {
@@ -126,12 +129,93 @@ public class RegistrationDAO{
         }
         return list;
     }
+    public List<Registration> getPendingRegistration(){
+        List<Registration> pendingRegistrations = new ArrayList<>();
+        DBContext db = DBContext.getInstance();
+        String sql = "SELECT * FROM Registrations WHERE status = 'Pending'";
+    try {
+        PreparedStatement statement = db.getConnection().prepareStatement(sql);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            Registration r = new Registration();
+            r.setRegistrationId(rs.getInt("RegistrationID"));
+            r.setRegistrationId(rs.getInt("UserID"));
+            r.setRegistrationType(rs.getString("RegistrationType"));
+            r.setAddress(rs.getString("Address"));
+            r.setStartDate(rs.getString("StartDate"));
+            r.setEndDate(rs.getString("EndDate"));
+            r.setStatus(rs.getString("Status"));
+            r.setDocumentPath(rs.getString("DocumentPath"));
+            pendingRegistrations.add(r);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return pendingRegistrations;
+    }
+    public List<Registration> getPendingHouseholdRegistrations() {
+        List<Registration> pendingRegistrations = new ArrayList<>();
+        DBContext db = DBContext.getInstance();
+        String sql = "SELECT * FROM Registrations WHERE status = 'Pending' and"
+                + "registrationType IN ('Permanent', 'Temporary', 'TemporaryStay')";
+        try{
+            PreparedStatement statement = db.getConnection().prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+            Registration r = new Registration();
+            r.setRegistrationId(rs.getInt("RegistrationID"));
+            r.setRegistrationId(rs.getInt("UserID"));
+            r.setRegistrationType(rs.getString("RegistrationType"));
+            r.setAddress(rs.getString("Address"));
+            r.setStartDate(rs.getString("StartDate"));
+            r.setEndDate(rs.getString("EndDate"));
+            r.setStatus(rs.getString("Status"));
+            r.setDocumentPath(rs.getString("DocumentPath"));
+            pendingRegistrations.add(r);
+        }
+        }catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return pendingRegistrations;
+    }
 
-    public static void main(String[] args) {
-        RegistrationDAO dao = new RegistrationDAO();
-        int userIdTest = 1; // Test với user ID giả lập
-        List<Registration> list = new ArrayList<>();
-        list = dao.getStatus(userIdTest);
-        System.out.println(list);
+    public List<Registration> getPendingSeparationRegistrations() {
+        List<Registration> pendingRegistrations = new ArrayList<>();
+        DBContext db = DBContext.getInstance();
+        String sql = "SELECT * FROM Registrations WHERE status = 'Pending' "
+                + "AND registrationType = 'HouseholdSeparation'";
+        try{
+            PreparedStatement statement = db.getConnection().prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+            Registration registration = new Registration();
+            registration.setRegistrationId(rs.getInt("registrationId"));
+            registration.setUserId(rs.getInt("userId"));
+            registration.setRegistrationType(rs.getString("registrationType"));
+            registration.setAddress(rs.getString("address"));
+            registration.setStartDate(rs.getString("startDate"));
+            registration.setEndDate(rs.getString("endDate"));
+            registration.setStatus(rs.getString("status"));
+            registration.setDocumentPath(rs.getString("documentPath"));
+            pendingRegistrations.add(registration);
+        }
+        }catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return pendingRegistrations;
+    }
+    
+    //Thay đổi trạng thái hồ sơ
+    public boolean updateRegistrationStatus(int registrationId, String status) throws SQLException {
+        DBContext db = DBContext.getInstance();
+        String sql = "UPDATE Registrations SET status = ? WHERE registrationId = ?";
+        PreparedStatement statement = db.getConnection().prepareStatement(sql);
+    try {
+        statement.setString(1, status);
+        statement.setInt(2, registrationId);
+    }catch(SQLException e) {
+        e.printStackTrace();
+        }
+        return statement.executeUpdate() > 0;
     }
 }

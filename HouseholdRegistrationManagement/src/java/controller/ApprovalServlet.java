@@ -2,6 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
+
 package controller;
 
 import dao.RegistrationDAO;
@@ -12,15 +13,17 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import model.Registration;
+import java.sql.SQLException;
+
 
 /**
  *
  * @author Vinh
  */
-public class ProfileStatusServlet extends HttpServlet {
+public class ApprovalServlet extends HttpServlet {
+    RegistrationDAO registrationDAO = new RegistrationDAO();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,55 +34,27 @@ public class ProfileStatusServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ProfileStatusServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ProfileStatusServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Integer userId = (Integer) session.getAttribute("userId");
+        List<Registration> householdRegistrations = registrationDAO.getPendingHouseholdRegistrations();
+        List<Registration> separationRegistrations = registrationDAO.getPendingSeparationRegistrations();
 
-        RegistrationDAO dao = new RegistrationDAO();
-
-        // Lấy danh sách đăng ký hộ khẩu (chỉ lấy Permanent, Temporary, TemporaryStay)
-        List<Registration> householdRegistrations = dao.getStatus(userId);
-
-        // Lấy danh sách đơn tách hộ khẩu
-        List<Registration> separationRegistrations = dao.getSeparationStatus(userId);
-
-        // Nhận giá trị filter từ URL
         String filter = request.getParameter("filter");
         if (filter == null) {
-            filter = "household"; // Mặc định hiển thị đăng ký hộ khẩu
+            filter = "household"; // Mặc định hiển thị danh sách đăng ký hộ khẩu
         }
 
-        // Đưa danh sách vào requestScope để truyền sang JSP
         request.setAttribute("householdRegistrations", householdRegistrations);
         request.setAttribute("separationRegistrations", separationRegistrations);
         request.setAttribute("filter", filter);
 
-        // Chuyển hướng đến trang JSP
-        request.getRequestDispatcher("/view/citizen/profileStatus.jsp").forward(request, response);
-    }
+        request.getRequestDispatcher("/view/leader/profileApproval.jsp").forward(request, response);
+    } 
 
-    /**
+    /** 
      * Handles the HTTP <code>POST</code> method.
-     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -87,18 +62,36 @@ public class ProfileStatusServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    throws ServletException, IOException {
+        int registrationId = Integer.parseInt(request.getParameter("registrationId"));
+        String action = request.getParameter("action");
+        try{
+
+            if ("approve".equals(action)) {
+                registrationDAO.updateRegistrationStatus(registrationId, "Approved");
+                sendNotification(registrationId, "Hồ sơ của bạn đã được duyệt.");
+            } else if ("reject".equals(action)) {
+                registrationDAO.updateRegistrationStatus(registrationId, "Rejected");
+                sendNotification(registrationId, "Hồ sơ của bạn đã bị từ chối.");
+            }
+            response.sendRedirect("approval");
+        }catch(SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    /**
+    private void sendNotification(int registrationId, String message) {
+        // Gửi thông báo đến người dân (có thể dùng Email hoặc Notification Table)
+        System.out.println("Thông báo gửi đến đơn " + registrationId + ": " + message);
+    }
+
+    /** 
      * Returns a short description of the servlet.
-     *
      * @return a String containing servlet description
      */
     @Override
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
+

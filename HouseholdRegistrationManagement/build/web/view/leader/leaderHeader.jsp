@@ -1,13 +1,13 @@
 <%-- 
-    Document   : leaderHeader
-    Created on : Mar 12, 2025, 4:43:58 PM
-    Author     : athuu
+    Document   : header
+    Created on : 5 thg 3, 2025, 11:15:59
+    Author     : Vinh
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div
     class="hdTopBar py-2 py-xl-3 bg-danger d-none d-md-block"
-    >
+>
 </div>
 <div
     class="hdFixerWrap py-2 py-md-3 py-xl-5 sSticky bg-white"
@@ -34,15 +34,53 @@
                     class="collapse navbar-collapse pageMainNavCollapse mt-2 mt-md-0"
                     id="pageMainNavCollapse"
                     >
-                    <ul class="navbar-nav mainNavigation" >
+                    <ul class="navbar-nav mainNavigation">
                         <li class="nav-item">
                             <a href="${pageContext.request.contextPath}/view/leader/leaderHome.jsp">Trang chủ</a>
                         </li>
+                        <li
+                            class="nav-item dropdown ddohOpener"
+                            >
                         <li class="nav-item">
-                            <a href="${pageContext.request.contextPath}/view/leader/leaderApproval.jsp">Phê duyệt hồ sơ</a>
-                        </li>    
+                            <a href="${pageContext.request.contextPath}/view/leader/profileApproval.jsp">Duyệt hồ sơ</a>
+                        </li>
                         <li class="nav-item">
-                            <a href="javascript:void(0);">Gửi ý kiến</a>
+                            <a href="${pageContext.request.contextPath}/view/leader/profileReport.jsp">Báo cáo</a>
+                        </li>
+                        <li
+                            class="nav-item dropdown ddohOpener"
+                            >
+                            <a
+                                class="dropdown-toggle dropIcn"
+                                href="javascript:void(0);"
+                                role="button"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                >Tài khoản</a
+                            >
+                            <div
+                                class="dropdown-menu hdMainDropdown desktopDropOnHover"
+                                >
+                                <ul
+                                    class="list-unstyled mb-0 hdDropdownList"
+                                    >
+                                    <li>
+                                        <a
+                                            class="dropdown-item"
+                                            href="contact-2.html"
+                                            >Thông tin cá nhân</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            class="dropdown-item"
+                                            href="${pageContext.request.contextPath}/logout"
+                                            >Đăng xuất</a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a href="">Thông báo</a>
@@ -82,6 +120,3 @@
         </nav>
     </div>
 </div>
-
-
-

@@ -184,7 +184,7 @@ ALTER TABLE [dbo].[Registrations]  WITH CHECK ADD CHECK  (([RegistrationType]='T
 GO
 ALTER TABLE [dbo].[Registrations]  WITH CHECK ADD CHECK  (([Status]='Rejected' OR [Status]='Approved' OR [Status]='Pending'))
 GO
-ALTER TABLE [dbo].[Users]  WITH CHECK ADD CHECK  (([Role]='Police' OR [Role]='AreaLeader' OR [Role]='Citizen'))
+ALTER TABLE [dbo].[Users]  WITH CHECK ADD CHECK  (([Role]='Police' OR [Role]='AreaLeader' OR [Role]='Citizen' OR [Role]='Admin'))
 GO
 USE [master]
 GO
