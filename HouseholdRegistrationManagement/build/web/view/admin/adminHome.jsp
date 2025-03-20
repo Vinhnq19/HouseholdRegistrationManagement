@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/responsive.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/rtl.css" />
         <style>
-                                .container {
+            .container {
                 width: 80%;
                 margin: auto;
                 padding-top: 20px;
@@ -66,15 +66,15 @@
                 background-repeat: no-repeat;
                 height: 100vh; /* Chiều cao full màn hình */
             }
-#pageWrapper {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
+            #pageWrapper {
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
 
-main {
-    flex-grow: 1;
-}
+            main {
+                flex-grow: 1;
+            }
         </style>
     </head>
     <body>
@@ -83,42 +83,42 @@ main {
             <div class="phStickyWrap">
                 <header id="pageHeader" class="bg-white">
                     <jsp:include page="../admin/adminHeader.jsp"></jsp:include>   
-                </header>
-            </div>
-
-            <!-- Main Content -->
-            <main>
-                <!-- Slider -->
-                <div class="introBlock ibSlider">
-                    <jsp:include page="../admin/ibSlider.jsp"></jsp:include>
+                    </header>
                 </div>
-                
-                <!-- Features -->
-                <aside id="featuresAsideBlock" class="featuresAsideBlock position-relative text-white">
-                    <jsp:include page="../admin/featuresAsideBlock.jsp"></jsp:include>
-                </aside>
-                
-                <!-- Meet Council -->
-                <section class="meetCouncilBlock position-relative pt-7 pt-md-9 pt-lg-14 pt-xl-20 pb-6">
-                    <jsp:include page="../common/meetCouncilBlock.jsp"></jsp:include>
-                </section>
-            </main>
 
-            <!-- Footer -->
+                <!-- Main Content -->
+                <main>
+                    <!-- Slider -->
+                    <div class="introBlock ibSlider">
+                    <jsp:include page="../admin/ibSlider.jsp"></jsp:include>
+                    </div>
+
+                    <!-- Features -->
+                    <aside id="featuresAsideBlock" class="featuresAsideBlock position-relative text-white">
+                    <jsp:include page="../admin/featuresAsideBlock.jsp"></jsp:include>
+                    </aside>
+
+                    <!-- Meet Council -->
+                    <section class="meetCouncilBlock position-relative pt-7 pt-md-9 pt-lg-14 pt-xl-20 pb-6">
+                    <jsp:include page="../common/meetCouncilBlock.jsp"></jsp:include>
+                    </section>
+                </main>
+
+                <!-- Footer -->
                 <footer
                     id="pageFooter"
                     class="text-center bg-danger pt-6 pb-3 pt-md-8 pb-md-5"
-                >
+                    >
                     <div class="container">
                         <p>
-                            <jsp:include page="../admin/ftAreaWrap.jsp"></jsp:include>
+                        <jsp:include page="../admin/ftAreaWrap.jsp"></jsp:include>
                         </p>
                     </div>
                 </footer>
-        </div>
+            </div>
 
-        <!-- Scripts -->
-        <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+            <!-- Scripts -->
+            <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/jqueryCustom.js"></script>
         <script src="${pageContext.request.contextPath}/js/plugins.js"></script>
         <script src="https://kit.fontawesome.com/391f644c42.js"></script>
