@@ -9,20 +9,25 @@
             <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/web/view/citizen/citizenHeader.jsp</file>
             <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/web/view/common/ibSlider.jsp</file>
             <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/src/java/model/Household.java</file>
+            <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/web/view/police/policeHome.jsp</file>
             <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/web/view/common/ftAreaWrap.jsp</file>
+            <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/web/view/admin/updateUser.jsp</file>
             <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/src/java/controller/UserServlet.java</file>
             <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/src/java/controller/HouseholdServlet.java</file>
             <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/web/view/common/header.jsp</file>
             <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/web/view/leader/leaderApproval.jsp</file>
-            <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/web/view/police/policeHouseholdManage.jsp</file>
             <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/src/java/controller/LogoutServlet.java</file>
             <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/web/view/citizen/featuresAsideBlock.jsp</file>
             <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/web/view/citizen/profileStatus.jsp</file>
             <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/web/view/admin/adminHeader.jsp</file>
             <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/web/view/citizen/ftAreaWrap.jsp</file>
+            <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/web/view/auth/login.jsp</file>
+            <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/web/view/registration.jsp</file>
             <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/web/view/auth/authHeader.jsp</file>
             <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/web/view/auth/forgotPassword.jsp</file>
+            <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/web/view/police/policeHeader.jsp</file>
             <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/web/view/auth/resetPassword.jsp</file>
+            <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/web/view/admin/deleteUser.jsp</file>
             <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/web/view/citizen/citizenHome.jsp</file>
             <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/web/view/admin/manageUsers.jsp</file>
             <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/src/java/controller/CitizenServlet.java</file>
@@ -34,7 +39,9 @@
             <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/web/view/leader/leaderHeader.jsp</file>
             <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/src/java/controller/AuthServlet.java</file>
             <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/web/view/common/meetCouncilBlock.jsp</file>
+            <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/web/view/admin/editUser.jsp</file>
             <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/src/java/controller/HouseholdLeaderServlet.java</file>
+            <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/web/view/admin/ftAreaWrap.jsp</file>
             <file>file:/C:/Users/haida/OneDrive/Documents/Git/HouseholdRegistrationManagement/HouseholdRegistrationManagement/src/java/dao/HouseholdDAO.java</file>
         </group>
     </open-files>
