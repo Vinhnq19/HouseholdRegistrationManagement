@@ -21,61 +21,63 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/responsive.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/rtl.css" />
         <style>
-                                .container {
-                width: 80%;
-                margin: auto;
-                padding-top: 20px;
-            }
-            .button-container {
+            #pageWrapper {
+                min-height: 100vh;
                 display: flex;
-                justify-content: center;
-                gap: 20px;
+                flex-direction: column;
             }
-            .card {
-                background: white;
-                padding: 20px;
-                border-radius: 10px;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                width: 250px;
-                text-align: center;
+
+            main {
+                flex-grow: 1;
             }
-            .card h2 {
-                font-size: 18px;
-                margin-bottom: 10px;
-            }
-            .btn {
-                display: block;
-                padding: 10px;
-                border-radius: 5px;
-                text-decoration: none;
-                font-size: 16px;
-                font-weight: bold;
-                color: white;
-            }
-            .btn-approve {
-                background-color: red;
-            }
-            .btn-manage {
-                background-color: green;
-            }
-            .btn-report {
-                background-color: orange;
-            }
-            .bg-container {
-                background-image: url(${pageContext.request.contextPath}/img/trongdong.jpg);
-                background-size: cover;
-                background-position: center;
-                background-repeat: no-repeat;
-                height: 100vh; /* Chiều cao full màn hình */
-            }
-#pageWrapper {
-    min-height: 100vh;
+            .table-responsive {
+    width: 100%;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-main {
-    flex-grow: 1;
+.table-bordered {
+    border-radius: 10px;
+    width: 100%;
+    font-size: 1.5rem; /* Tăng kích thước chữ */
+    width: 80%; /* Tăng chiều rộng bảng */
+    border-collapse: collapse; /* Gộp viền bảng */
+}
+
+th {
+    background-color: #343a40 !important;
+    color: white !important;
+}
+
+td, th {
+    vertical-align: middle !important;
+}
+
+.btn-sm {
+    padding: 5px 10px;
+}
+/* Tăng padding trong ô */
+th, td {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Tăng kích thước nút */
+.btn {
+    font-size: 1.2rem;
+    padding: 12px 24px;
+}
+/* Thiết lập cho màn hình nhỏ (dưới 768px) */
+@media screen and (max-width: 768px) {
+    .table-bordered {
+        font-size: 0.9rem; /* Giảm kích thước chữ */
+    }
+    /* Căn chỉnh lại kích thước nút bấm */
+    .btn {
+        font-size: 0.85rem;
+        padding: 6px 10px;
+    }
 }
         </style>
     </head>
@@ -90,138 +92,151 @@ main {
 
                 <!-- Main Content -->
                 <main>
-            <div class="container section">
-                <h2 class="text-center mt-4">Duyệt Hồ Sơ Đăng Ký</h2>
-
-                <!-- Nút chọn loại đơn -->
-                <div class="text-center my-3">
-                    <a href="?filter=household" class="btn btn-primary ${filter == 'household' ? 'active' : ''}">📌 Đăng ký hộ khẩu</a>
-                    <a href="?filter=separation" class="btn btn-success ${filter == 'separation' ? 'active' : ''}">📂 Tách hộ khẩu</a>
-                </div>
-
-                <!-- Hiển thị bảng Đăng ký hộ khẩu -->
-                <c:if test="${filter == 'household'}">
-                    <h4 class="text-center">📌 Đăng ký hộ khẩu</h4>
-                    <c:choose>
-                        <c:when test="${empty householdRegistrations}">
-                            <p class="text-center">Không có hồ sơ nào cần duyệt.</p>
-                        </c:when>
-                        <c:otherwise>
-                            <table class="table table-bordered mt-3">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>Mã</th>
-                                        <th>Loại</th>
-                                        <th>Địa chỉ</th>
-                                        <th>Tài liệu</th>
-                                        <th>Hành động</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <c:forEach var="r" items="${householdRegistrations}">
-                                        <tr>
-                                            <td>${r.registrationId}</td>
-                                            <td>
-                                                <c:choose>
-                                                    <c:when test="${r.registrationType == 'Permanent'}">
-                                                        <span class="badge bg-warning text-dark">Thường trú</span>
-                                                    </c:when>
-                                                    <c:when test="${r.registrationType == 'Temporary'}">
-                                                        <span class="badge bg-success">Tạm trú</span>
-                                                    </c:when>
-                                                    <c:when test="${r.registrationType == 'TemporaryStay'}">
-                                                        <span class="badge bg-danger">Lưu trú</span>
-                                                    </c:when>
-                                                </c:choose>
-                                            </td>
-                                            <td>${r.address}</td>
-                                            <td>
-                                                <c:if test="${not empty r.documentPath}">
-                                                    <a href="${pageContext.request.contextPath}/${r.documentPath}" target="_blank">Xem file</a>
-                                                </c:if>
-                                            </td>
-                                            <td>
-                                                <form action="${pageContext.request.contextPath}/approve" method="post" style="display:inline;">
-                                                    <input type="hidden" name="registrationId" value="${r.registrationId}">
-                                                    <button type="submit" name="action" value="approve" class="btn btn-success">Duyệt</button>
-                                                </form>
-                                                    <form action="${pageContext.request.contextPath}/approve" method="post" style="display:inline;">
-                                                        <input type="hidden" name="registrationId" value="${r.registrationId}">
-                                                        <button type="submit" name="action" value="reject" class="btn btn-danger">Từ chối</button>
-                                                    </form>
-                                            </td>
+                    <div class="container section">
+                        <h2 class="text-center mt-4">Duyệt Hồ Sơ Đăng Ký</h2>
+                        <!-- Nút chọn loại đơn -->
+                        <div class="text-center my-3">
+                            <a href="?filter=household" class="btn btn-primary ${filter == 'household' ? 'active' : ''}">📌 Đăng ký hộ khẩu</a>
+                        <a href="?filter=separation" class="btn btn-success ${filter == 'separation' ? 'active' : ''}">📂 Tách hộ khẩu</a>
+                    </div>
+                    <c:if test="${filter == 'household'}">
+                        <h4 class="text-center">📌 Đăng ký hộ khẩu</h4>
+                        <c:choose>
+                            <c:when test="${empty householdRegistrations}">
+                                <p class="text-center">Bạn chưa có hồ sơ đăng ký hộ khẩu.</p>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="table-responsive">
+                                    <table class="table-bordered table-striped table-hover mt-3 text-center">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Mã hộ khẩu</th>
+                                                <th>Họ và tên</th>
+                                                <th>Địa chỉ</th>
+                                                <th>Loại đơn</th>
+                                                <th>Trạng thái</th>
+                                                <th>Tài liệu</th>
+                                                <th>Hành động</th>
                                             </tr>
-                                    </c:forEach>
-                                    </tbody>
-                            </table>    
-                        </c:otherwise>
-                    </c:choose>
-                </c:if>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach var="r" items="${householdRegistrations}">
+                                                <tr>
+                                                    <td>${r.registrationId}</td>
+                                                    <td>${fullname[r.userId]}</td>
+                                                    <td>${r.address}</td>
+                                                    <td>
+                                                        <c:choose>
+                                                            <c:when test="${r.registrationType == 'Permanent'}">
+                                                                <span class="badge bg-warning text-dark">Thường trú</span>
+                                                            </c:when>
+                                                            <c:when test="${r.registrationType == 'Temporary'}">
+                                                                <span class="badge bg-success">Tạm trú</span>
+                                                            </c:when>
+                                                            <c:when test="${r.registrationType == 'TemporaryStay'}">
+                                                                <span class="badge bg-danger">Lưu trú</span>
+                                                            </c:when>
+                                                        </c:choose>
+                                                    </td>
+                                                    <td><span class="badge bg-warning text-dark">Chờ duyệt</span></td>
+                                                    <td>
+                                                        <c:if test="${not empty r.documentPath}">
+                                                            <a href="${pageContext.request.contextPath}/${r.documentPath}" target="_blank" class="btn btn-info btn-sm">
+                                                                <i class="fas fa-file-alt"></i> Xem file
+                                                            </a>
+                                                        </c:if>
+                                                    </td>
+                                                    <td>
+                                                        <form action="profileApproval" method="post">
+                                                            <input type="hidden" name="registrationId" value="${r.registrationId}">
+                                                            <button type="submit" name="action" value="approve" class="btn btn-success btn-sm">
+                                                                <i class="fas fa-check"></i> Duyệt
+                                                            </button>
+                                                            <button type="submit" name="action" value="reject" class="btn btn-danger btn-sm">
+                                                                <i class="fas fa-times"></i> Từ chối
+                                                            </button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:if>
 
-                <!-- Hiển thị bảng Tách hộ khẩu -->
-                <c:if test="${filter == 'separation'}">
-                    <h4 class="text-center">📂 Tách hộ khẩu</h4>
-                    <c:choose>
-                        <c:when test="${empty separationRegistrations}">
-                            <p class="text-center">Không có hồ sơ nào cần duyệt.</p>
-                        </c:when>
-                        <c:otherwise>
-                            <table class="table table-bordered mt-3">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>Mã</th>
-                                        <th>Địa chỉ cũ</th>
-                                        <th>Địa chỉ mới</th>
-                                        <th>Tài liệu</th>
-                                        <th>Hành động</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <c:forEach var="r" items="${separationRegistrations}">
-                                    <tr>
-                                        <td>${r.registrationId}</td>
-                                        <td><c:out value="${r.comments}" default="Không có" /></td>
-                                    <td>${r.address}</td>
-                                    <td>
-                                    <c:if test="${not empty r.documentPath}">
-                                        <a href="${pageContext.request.contextPath}/${r.documentPath}" target="_blank">Xem file</a>
-                                    </c:if>
-                                    </td>
-                                    <td>
-                                        <form action="${pageContext.request.contextPath}/approve" method="post" style="display:inline;">
-                                            <input type="hidden" name="registrationId" value="${r.registrationId}">
-                                            <button type="submit" name="action" value="approve" class="btn btn-success">Duyệt</button>
-                                        </form>
-                                        <form action="${pageContext.request.contextPath}/approve" method="post" style="display:inline;">
-                                            <input type="hidden" name="registrationId" value="${r.registrationId}">
-                                            <button type="submit" name="action" value="reject" class="btn btn-danger">Từ chối</button>
-                                        </form>
-                                    </td>
-                                    </tr>
-                                </c:forEach>
-                                </tbody>
-                            </table>  
-                        </c:otherwise>
-                    </c:choose>
-                </c:if>
+
+                    <c:if test="${filter == 'separation'}">
+                        <h4 class="text-center">📂 Tách hộ khẩu</h4>
+                        <c:choose>
+                            <c:when test="${empty separationRegistrations}">
+                                <p class="text-center">Bạn chưa có hồ sơ đăng ký hộ khẩu.</p>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="table-responsive">
+                                    <table class="table-bordered table-striped table-hover mt-3 text-center">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Mã hộ khẩu</th>
+                                                <th>Họ và tên</th>
+                                                <th>Địa chỉ cũ</th>
+                                                <th>Địa chỉ mới</th>
+                                                <th>Tài liệu</th>
+                                                <th>Trạng thái</th>
+                                                <th>Hành động</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach var="r" items="${separationRegistrations}">
+                                                <tr>
+                                                    <td>${r.registrationId}</td>
+                                                    <td>${fullname[r.userId]}</td>
+                                                    <td>${r.comments}</td>
+                                                    <td>${r.address}</td>
+                                                    <td>
+                                                        <c:if test="${not empty r.documentPath}">
+                                                            <a href="${pageContext.request.contextPath}/${r.documentPath}" 
+                                                               target="_blank" class="btn btn-info btn-sm">
+                                                                <i class="fas fa-file-alt"></i> Xem file
+                                                            </a>
+                                                        </c:if>
+                                                    </td>
+                                                    <td><span class="badge bg-warning text-dark">Chờ duyệt</span></td>
+                                                    <td>
+                                                        <form action="profileApproval" method="post">
+                                                            <input type="hidden" name="registrationId" value="${r.registrationId}">
+                                                            <button type="submit" name="action" value="approve" class="btn btn-success">Duyệt</button>
+                                                            <button type="submit" name="action" value="reject" class="btn btn-danger">Từ chối</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:if>
+
                 </div>
                     </main>
 
                     <!-- Footer -->
             <footer
-                    id="pageFooter"
-                    class="text-center bg-danger pt-6 pb-3 pt-md-8 pb-md-5"
+                id="pageFooter"
+                class="text-center bg-danger pt-6 pb-3 pt-md-8 pb-md-5"
                 >
-                    <div class="container">
-                        <p>
-                            <jsp:include page="../common/ftAreaWrap.jsp"></jsp:include>
+                <div class="container">
+                    <p>
+                        <jsp:include page="../common/ftAreaWrap.jsp"></jsp:include>
                         </p>
                     </div>
                 </footer>
-        </div>
+            </div>
 
-        <!-- Scripts -->
-        <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+            <!-- Scripts -->
+            <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/jqueryCustom.js"></script>
         <script src="${pageContext.request.contextPath}/js/plugins.js"></script>
         <script src="https://kit.fontawesome.com/391f644c42.js"></script>

@@ -101,9 +101,9 @@ public class UserDAO {
     //show tất cả người dùng    
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
-        try (Connection conn = db.getConnection()) {
-            String sql = "SELECT * FROM Users";
-            PreparedStatement stmt = conn.prepareStatement(sql);
+        DBContext db = DBContext.getInstance();
+        String sql = "SELECT * FROM Users";
+        try (PreparedStatement stmt = db.getConnection().prepareStatement(sql);) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 users.add(new User(
@@ -237,5 +237,12 @@ public class UserDAO {
         }
         return users;
     }
+    public static void main(String[] args) {
+        UserDAO userDAO = new UserDAO();
+        List<User> users = userDAO.getAllUsers();
 
+        for (User user : users) {
+            System.out.println("User: " + user.getFullName() + ", Email: " + user.getEmail());
+        }
+    }
 }

@@ -139,7 +139,7 @@ public class RegistrationDAO{
         while (rs.next()) {
             Registration r = new Registration();
             r.setRegistrationId(rs.getInt("RegistrationID"));
-            r.setRegistrationId(rs.getInt("UserID"));
+            r.setUserId(rs.getInt("UserID"));
             r.setRegistrationType(rs.getString("RegistrationType"));
             r.setAddress(rs.getString("Address"));
             r.setStartDate(rs.getString("StartDate"));
@@ -156,15 +156,14 @@ public class RegistrationDAO{
     public List<Registration> getPendingHouseholdRegistrations() {
         List<Registration> pendingRegistrations = new ArrayList<>();
         DBContext db = DBContext.getInstance();
-        String sql = "SELECT * FROM Registrations WHERE status = 'Pending' and"
-                + "registrationType IN ('Permanent', 'Temporary', 'TemporaryStay')";
+        String sql = "SELECT * FROM Registrations WHERE status = 'Pending' and RegistrationType IN ('Permanent', 'Temporary', 'TemporaryStay')";
         try{
             PreparedStatement statement = db.getConnection().prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
             Registration r = new Registration();
             r.setRegistrationId(rs.getInt("RegistrationID"));
-            r.setRegistrationId(rs.getInt("UserID"));
+            r.setUserId(rs.getInt("UserID"));
             r.setRegistrationType(rs.getString("RegistrationType"));
             r.setAddress(rs.getString("Address"));
             r.setStartDate(rs.getString("StartDate"));
@@ -188,16 +187,17 @@ public class RegistrationDAO{
             PreparedStatement statement = db.getConnection().prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-            Registration registration = new Registration();
-            registration.setRegistrationId(rs.getInt("registrationId"));
-            registration.setUserId(rs.getInt("userId"));
-            registration.setRegistrationType(rs.getString("registrationType"));
-            registration.setAddress(rs.getString("address"));
-            registration.setStartDate(rs.getString("startDate"));
-            registration.setEndDate(rs.getString("endDate"));
-            registration.setStatus(rs.getString("status"));
-            registration.setDocumentPath(rs.getString("documentPath"));
-            pendingRegistrations.add(registration);
+            Registration r = new Registration();
+            r.setRegistrationId(rs.getInt("RegistrationID"));
+            r.setUserId(rs.getInt("UserID"));
+            r.setRegistrationType(rs.getString("RegistrationType"));
+            r.setAddress(rs.getString("Address"));
+            r.setStartDate(rs.getString("StartDate"));
+            r.setEndDate(rs.getString("EndDate"));
+            r.setStatus(rs.getString("Status"));
+            r.setComments(rs.getString("Comments"));
+            r.setDocumentPath(rs.getString("DocumentPath"));
+            pendingRegistrations.add(r);
         }
         }catch(SQLException e) {
             e.printStackTrace();
@@ -206,16 +206,58 @@ public class RegistrationDAO{
     }
     
     //Thay đổi trạng thái hồ sơ
-    public boolean updateRegistrationStatus(int registrationId, String status) throws SQLException {
+    public boolean updateRegistrationStatus(int registrationId, String status, int approvedBy){
         DBContext db = DBContext.getInstance();
-        String sql = "UPDATE Registrations SET status = ? WHERE registrationId = ?";
-        PreparedStatement statement = db.getConnection().prepareStatement(sql);
-    try {
-        statement.setString(1, status);
-        statement.setInt(2, registrationId);
-    }catch(SQLException e) {
-        e.printStackTrace();
+        String sql = "UPDATE Registrations SET Status = ?, ApprovedBy = ? WHERE RegistrationID = ?";
+        try (PreparedStatement statement = db.getConnection().prepareStatement(sql)) {
+
+            statement.setString(1, status);
+            statement.setInt(2, approvedBy);
+            statement.setInt(3, registrationId);
+            int rowsUpdated = statement.executeUpdate();
+        } catch(SQLException e) {
+            e.printStackTrace();
         }
-        return statement.executeUpdate() > 0;
+        return false;
     }
+    public static void main(String[] args) {
+        RegistrationDAO dao = new RegistrationDAO();
+
+        // Test lấy danh sách hồ sơ chờ duyệt (Hộ khẩu)
+        System.out.println("🔹 Testing getPendingHouseholdRegistrations...");
+        List<Registration> householdRegistrations = dao.getPendingHouseholdRegistrations();
+        if (householdRegistrations.isEmpty()) {
+            System.out.println("❌ Không có đơn đăng ký hộ khẩu nào đang chờ duyệt.");
+        } else {
+            for (Registration r : householdRegistrations) {
+                System.out.println("✅ Hộ khẩu chờ duyệt: " + r.getRegistrationId() + " - " + r.getAddress() + "-" + r.getDocumentPath());
+            }
+        }
+
+        // Test lấy danh sách hồ sơ chờ duyệt (Tách hộ khẩu)
+        System.out.println("\n🔹 Testing getPendingSeparationRegistrations...");
+        List<Registration> separationRegistrations = dao.getPendingSeparationRegistrations();
+        if (separationRegistrations.isEmpty()) {
+            System.out.println("❌ Không có đơn tách hộ khẩu nào đang chờ duyệt.");
+        } else {
+            for (Registration r : separationRegistrations) {
+                System.out.println("✅ Tách hộ khẩu chờ duyệt: " + r.getRegistrationId() + " - " + r.getAddress());
+            }
+        }
+
+        // Test cập nhật trạng thái hồ sơ
+        if (!householdRegistrations.isEmpty()) {
+            int testRegistrationId = householdRegistrations.get(0).getRegistrationId();
+            System.out.println("\n🔹 Testing updateRegistrationStatus...");
+            boolean updateSuccess = dao.updateRegistrationStatus(testRegistrationId, "Approved", 1);
+            if (updateSuccess) {
+                System.out.println("✅ Đã cập nhật trạng thái hồ sơ ID " + testRegistrationId + " thành 'Approved'.");
+            } else {
+                System.out.println("❌ Không thể cập nhật trạng thái.");
+            }
+        }
+        
+    }
+
+
 }

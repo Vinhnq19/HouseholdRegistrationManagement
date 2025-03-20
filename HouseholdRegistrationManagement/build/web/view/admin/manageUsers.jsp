@@ -123,10 +123,10 @@ if ((!searchQuery.isEmpty() || !roleFilter.isEmpty())) {
                 padding: 20px;
                 border-radius: 10px;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            }
-            .table th, .table td {
-                text-align: center;
-                vertical-align: middle;
+                display: flex;
+                justify-content: center; /* Căn giữa theo chiều ngang */
+                align-items: center; /* Căn giữa theo chiều dọc */
+                width: 100%;
             }
             .btn-action {
                 display: flex;
@@ -223,7 +223,7 @@ if ((!searchQuery.isEmpty() || !roleFilter.isEmpty())) {
 
 
                     <!-- Bảng danh sách người dùng -->
-                    <table class="table table-bordered table-hover">
+                    <table class="table table-hover">
                         <thead class="table-dark">
                             <tr>
                                 <th>ID</th>

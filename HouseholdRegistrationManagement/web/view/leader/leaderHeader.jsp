@@ -42,7 +42,7 @@
                             class="nav-item dropdown ddohOpener"
                             >
                         <li class="nav-item">
-                            <a href="${pageContext.request.contextPath}/view/leader/profileApproval.jsp">Duyệt hồ sơ</a>
+                            <a href="${pageContext.request.contextPath}/profileApproval">Duyệt hồ sơ</a>
                         </li>
                         <li class="nav-item">
                             <a href="${pageContext.request.contextPath}/view/leader/profileReport.jsp">Báo cáo</a>

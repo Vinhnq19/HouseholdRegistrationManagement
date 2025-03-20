@@ -6,6 +6,7 @@
 package controller;
 
 import dao.RegistrationDAO;
+import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -16,6 +17,7 @@ import jakarta.servlet.http.HttpSession;
 import java.util.*;
 import model.Registration;
 import java.sql.SQLException;
+import model.User;
 
 
 /**
@@ -24,6 +26,7 @@ import java.sql.SQLException;
  */
 public class ApprovalServlet extends HttpServlet {
     RegistrationDAO registrationDAO = new RegistrationDAO();
+    UserDAO userDAO = new UserDAO();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,14 +41,23 @@ public class ApprovalServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        Integer userId = (Integer) session.getAttribute("userId");
+        List<User> userList = userDAO.getAllUsers();
+        // Map để ánh xạ userId → fullName
+        Map<Integer, String> userMap = new HashMap<>();
+        for (User user : userList) {
+            userMap.put(user.getUserId(), user.getFullName());
+        }
         List<Registration> householdRegistrations = registrationDAO.getPendingHouseholdRegistrations();
         List<Registration> separationRegistrations = registrationDAO.getPendingSeparationRegistrations();
 
+        // Nhận giá trị filter từ URL
         String filter = request.getParameter("filter");
         if (filter == null) {
-            filter = "household"; // Mặc định hiển thị danh sách đăng ký hộ khẩu
+            filter = "household"; // Mặc định hiển thị đăng ký hộ khẩu
         }
-
+ 
+        request.setAttribute("fullname", userMap);
         request.setAttribute("householdRegistrations", householdRegistrations);
         request.setAttribute("separationRegistrations", separationRegistrations);
         request.setAttribute("filter", filter);
@@ -63,22 +75,24 @@ public class ApprovalServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Integer userId = (Integer) session.getAttribute("userId");
+        
         int registrationId = Integer.parseInt(request.getParameter("registrationId"));
         String action = request.getParameter("action");
-        try{
+        String status = action.equals("approve") ? "Approved" : "Rejected";
+        
+    boolean updated = registrationDAO.updateRegistrationStatus(registrationId, status, userId);
 
-            if ("approve".equals(action)) {
-                registrationDAO.updateRegistrationStatus(registrationId, "Approved");
-                sendNotification(registrationId, "Hồ sơ của bạn đã được duyệt.");
-            } else if ("reject".equals(action)) {
-                registrationDAO.updateRegistrationStatus(registrationId, "Rejected");
-                sendNotification(registrationId, "Hồ sơ của bạn đã bị từ chối.");
-            }
-            response.sendRedirect("approval");
-        }catch(SQLException e) {
-            e.printStackTrace();
-        }
+    if (updated) {
+        request.setAttribute("message", "✅ Đã " + (action.equals("approve") ? "duyệt" : "từ chối") + " hồ sơ!");
+    } else {
+        request.setAttribute("error", "❌ Không thể cập nhật trạng thái hồ sơ.");
     }
+
+    request.getRequestDispatcher("/view/leader/profileApproval.jsp").forward(request, response);
+}
+    
 
     private void sendNotification(int registrationId, String message) {
         // Gửi thông báo đến người dân (có thể dùng Email hoặc Notification Table)

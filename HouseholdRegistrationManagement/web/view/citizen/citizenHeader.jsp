@@ -119,7 +119,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a href="">Thông báo</a>
+                            <a href="${pageContext.request.contextPath}/citizenNotifications.jsp">Thông báo</a>
                         </li>
                     </ul>
                 </div>
