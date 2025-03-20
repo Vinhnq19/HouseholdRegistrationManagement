@@ -145,22 +145,31 @@ public class UserDAO {
     }
 
     // Cập nhật thông tin user
-    public boolean updateUser(int userId, String fullName, String email, String role, String address) {
-        try (Connection conn = db.getConnection()) {
-            String sql = "UPDATE Users SET FullName = ?, Email = ?, Role = ?, Address = ? WHERE UserID = ?";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, fullName);
-            stmt.setString(2, email);
-            stmt.setString(3, role);
-            stmt.setString(4, address);
-            stmt.setInt(5, userId);
+   public boolean updateUser(int userId, String fullName, String email, String role, String address) {
+    String sql = "UPDATE Users SET FullName = ?, Email = ?, Role = ?, Address = ? WHERE UserID = ?";
+    try (Connection conn = db.getConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            return stmt.executeUpdate() > 0;
-        } catch (Exception e) {
-            e.printStackTrace();
+        stmt.setString(1, fullName);
+        stmt.setString(2, email);
+        stmt.setString(3, role);
+        stmt.setString(4, address);
+        stmt.setInt(5, userId);
+
+        int rowsUpdated = stmt.executeUpdate();
+        if (rowsUpdated > 0) {
+            System.out.println("Cập nhật thành công cho UserID: " + userId);
+        } else {
+            System.out.println("Không tìm thấy user với ID: " + userId);
         }
-        return false;
+        return rowsUpdated > 0;
+    } catch (SQLException e) {
+        System.out.println("Lỗi SQL khi cập nhật user: " + e.getMessage());
+        e.printStackTrace();
     }
+    return false;
+}
+
 
     // Xóa user
     public boolean deleteUser(int userId) {
